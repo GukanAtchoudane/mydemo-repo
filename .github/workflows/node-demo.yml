@@ -1,0 +1,22 @@
+name: Build and Test Node.js Application
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+jobs:
+  buildnodejs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - name: Install Nodejs of Version 18
+        uses: actions/setup-node@v6
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests using npm test
+        run: npm test
+      - name: Build the application using npm run build
+        run: npm run build
